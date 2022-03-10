@@ -1,1 +1,1 @@
-# wgo-printed
+# wgo-pdf-printer
