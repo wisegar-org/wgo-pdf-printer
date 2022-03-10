@@ -15,6 +15,13 @@ export type ConfigLaunch = LaunchOptions &
     extraPrefsFirefox?: Record<string, unknown>;
   };
 
+/**
+ * @description Generates a pdf buffer from an HTML content
+ * @param content HTML content
+ * @param config PDFOptions
+ * @param configLaunch  PDF Engine startup settings
+ * @returns PDF File Buffer
+ */
 export async function exportHTMLToPdfBuffer(
   content: string,
   config: PDFOptions,
