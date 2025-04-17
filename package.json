@@ -1,6 +1,5 @@
 {
   "name": "wgo-pdf-tools",
-  "private": true,
   "version": "0.0.1-build.2",
   "description": "Wisegar PDF printing tools Module",
   "main": "build/index.js",
