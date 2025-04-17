@@ -1,17 +1,10 @@
-import puppeteer, {
-  BrowserConnectOptions,
-  BrowserLaunchArgumentOptions,
-  LaunchOptions,
-  PDFOptions,
-  Product,
-} from 'puppeteer';
+import puppeteer, { LaunchOptions, PDFOptions } from 'puppeteer';
 import { ReadStream } from 'fs-extra';
 import { Readable } from 'stream';
 
 export type ConfigLaunch = LaunchOptions &
-  BrowserLaunchArgumentOptions &
-  BrowserConnectOptions & {
-    product?: Product;
+  any & {
+    product?: any;
     extraPrefsFirefox?: Record<string, unknown>;
   };
 
@@ -26,7 +19,7 @@ export async function exportHTMLToPdfBuffer(
   content: string,
   config: PDFOptions,
   configLaunch: ConfigLaunch = { ignoreDefaultArgs: ['--disable-extensions'] }
-): Promise<Buffer> {
+): Promise<any> {
   //create browser
   const browser = await puppeteer.launch(configLaunch);
   //set page content
@@ -38,6 +31,12 @@ export async function exportHTMLToPdfBuffer(
   return pdfBuffer;
 }
 
+/**
+ * @param content
+ * @param config
+ * @param configLaunch
+ * @returns
+ */
 export async function exportHTMLToPdfReadStream(
   content: string,
   config: PDFOptions,
