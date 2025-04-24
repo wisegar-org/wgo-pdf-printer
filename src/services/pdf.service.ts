@@ -42,19 +42,3 @@ export const mergeDocuments = async (documentPaths: string[], outputDocumentPath
   const outputDocumentBytes = await outputDocument.save();
   writeFileSync(outputDocumentPath, outputDocumentBytes);
 };
-
-export const mergeeDocuments = async () => {
-  const documentPaths: string[] = ['file-a.pdf', 'file-b.pdf'];
-  const outputDocumentPath: string = 'output.pdf';
-  const outputDocument = await PDFDocument.create();
-  for (let documentPathIndex = 0; documentPathIndex < documentPaths.length; documentPathIndex++) {
-    const documentBytes = readFileSync(documentPaths[documentPathIndex]);
-    const document = await PDFDocument.load(documentBytes);
-    const copiedPages = await outputDocument.copyPages(document, document.getPageIndices());
-    for (let copiedPageIndex = 0; copiedPageIndex < copiedPages.length; copiedPageIndex++) {
-      outputDocument.addPage(copiedPages[copiedPageIndex]);
-    }
-  }
-  const outputDocumentBytes = await outputDocument.save();
-  writeFileSync(outputDocumentPath, outputDocumentBytes);
-};
